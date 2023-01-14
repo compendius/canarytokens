@@ -520,6 +520,8 @@ def is_webhook_valid(url):
     """
     if not url or url == '':
         return False
+    return True
+        
 
 #    slack_hook_base_url = "https://hooks.slack.com"
 #    googlechat_hook_base_url = "https://chat.googleapis.com/"
