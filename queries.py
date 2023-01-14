@@ -521,34 +521,34 @@ def is_webhook_valid(url):
     if not url or url == '':
         return False
 
-    slack_hook_base_url = "https://hooks.slack.com"
-    googlechat_hook_base_url = "https://chat.googleapis.com/"
-    if (slack_hook_base_url in url or googlechat_hook_base_url in url):
-        payload = {'text': 'Validating new canarytokens webhook'}
-    else:
-        payload = {"manage_url": "http://example.com/test/url/for/webhook",
-                   "memo": "Congrats! The newly saved webhook works",
-                   "additional_data": {
-                        "src_ip": "1.1.1.1",
-                        "useragent": "Mozilla/5.0...",
-                        "referer": "http://example.com/referrer",
-                        "location": "http://example.com/location"
-                    },
-               "channel": "HTTP",
-               "time": datetime.datetime.now().strftime('%Y-%m-%d %T') }
-    try:
-        response = requests.post(url,
-                                 simplejson.dumps(payload),
-                                 headers={'content-type': 'application/json'},
-                                 timeout=10)
-        response.raise_for_status()
-        return True
-    except requests.exceptions.Timeout as e:
-        log.error('Timed out sending test payload to webhook: {url}'.format(url=url))
-        return False
-    except requests.exceptions.RequestException as e:
-        log.error('Failed sending test payload to webhook: {url} with error {error}'.format(url=url,error=e))
-        return False
+#    slack_hook_base_url = "https://hooks.slack.com"
+#    googlechat_hook_base_url = "https://chat.googleapis.com/"
+#    if (slack_hook_base_url in url or googlechat_hook_base_url in url):
+#        payload = {'text': 'Validating new canarytokens webhook'}
+#    else:
+#        payload = {"manage_url": "http://example.com/test/url/for/webhook",
+#                   "memo": "Congrats! The newly saved webhook works",
+#                   "additional_data": {
+#                        "src_ip": "1.1.1.1",
+#                        "useragent": "Mozilla/5.0...",
+#                        "referer": "http://example.com/referrer",
+#                        "location": "http://example.com/location"
+#                    },
+#               "channel": "HTTP",
+#               "time": datetime.datetime.now().strftime('%Y-%m-%d %T') }
+#    try:
+#        response = requests.post(url,
+#                                 simplejson.dumps(payload),
+#                                 headers={'content-type': 'application/json'},
+#                                 timeout=10)
+#        response.raise_for_status()
+#        return True
+#    except requests.exceptions.Timeout as e:
+#        log.error('Timed out sending test payload to webhook: {url}'.format(url=url))
+#        return False
+#    except requests.exceptions.RequestException as e:
+#        log.error('Failed sending test payload to webhook: {url} with error {error}'.format(url=url,error=e))
+#        return False
 
 def is_valid_email(email):
     # This validation checks that no disallowed characters are in the section of the email
